@@ -1,17 +1,22 @@
 package com.june.customframework.config;
 
 import com.june.customframework.config.jwt.TokenProvider;
+import com.june.customframework.config.oauth.OAuth2AuthorizationRequestBasedOnCookieRepository;
+import com.june.customframework.config.oauth.OAuth2SuccessHandler;
 import com.june.customframework.config.oauth.OAuth2UserCustomService;
 import com.june.customframework.repository.RefreshTokenRepository;
 import com.june.customframework.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
